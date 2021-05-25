@@ -29,7 +29,7 @@ const Game = (() => {
 			window.alert("It's a draw!");
 		}	
 	};
-	
+
 
 	const changePlayer = () => {
 		if (currentPlayer == player1) {
@@ -80,33 +80,35 @@ const Game = (() => {
 
 })();
 
-const allPositions = document.querySelectorAll('[data-square-target]');
-const resetButton = document.querySelector('[data-reset-board]');
-const allBoard = document.querySelector('[data-all-board]');
-const numberConverter = {"#zero": 0, "#one": 1, "#two": 2, "#three": 3, "#four": 4, "#five": 5, "#six": 6, "#seven": 7, "#eight": 8};
+const Animate = (() => {
 
-const randomVariable = allPositions.forEach(position => {
-	position.addEventListener("click", () => {
-		let thisPosition = document.querySelector(position.dataset.squareTarget);
-		animateBoard(thisPosition);
+	const allPositions = document.querySelectorAll('[data-square-target]');
+	const resetButton = document.querySelector('[data-reset-board]');
+	const allBoard = document.querySelector('[data-all-board]');
+	const numberConverter = {"#zero": 0, "#one": 1, "#two": 2, "#three": 3, "#four": 4, "#five": 5, "#six": 6, "#seven": 7, "#eight": 8};
+
+	const randomVariable = allPositions.forEach(position => {
+		position.addEventListener("click", () => {
+			let thisPosition = document.querySelector(position.dataset.squareTarget);
+			animateBoard(thisPosition);
+		});
+
 	});
 
-});
-
-function animateBoard(thisPosition){
-	if (thisPosition.innerText !== "X" && thisPosition.innerText !== "O"){
-		thisPosition.innerText = currentPlayer.piece;
+	function animateBoard(thisPosition){
+		if (thisPosition.innerText !== "X" && thisPosition.innerText !== "O"){
+			thisPosition.innerText = currentPlayer.piece;
+		}
+		Game.placePiece(numberConverter[thisPosition.dataset.squareTarget]);
 	}
-	Game.placePiece(numberConverter[thisPosition.dataset.squareTarget]);
-}
 
-//Reset the board*******************************************************************************************************************************************
-resetButton.addEventListener('click', () => {
-	Game.clear();
-	resetAnimatedBoard();
-});
+	//Reset the board*******************************************************************************************************************************************
+	resetButton.addEventListener('click', () => {
+		Game.clear();
+		resetAnimatedBoard();
+	});
 
-function resetAnimatedBoard() {
-	location.reload();
-}
-
+	function resetAnimatedBoard() {
+		location.reload();
+	}
+})();

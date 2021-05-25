@@ -47,6 +47,10 @@ table {
 	border-spacing: 0;
 }
 
+*,*::before, *::after {
+	box-sizing: border-box;
+}
+
 h1 {
 	font-size: 3rem;
 	text-align: center;
@@ -74,3 +78,17 @@ button {
 button:hover {
 	background-color: rgba(211,211,211,.75);
 }
+
+button.reset-button {
+	font-size: 1rem;
+}
+
+.wrap-btn {
+	display: flex;
+	justify-content: center;
+	margin-top: 16px;
+}
+
+
+
+

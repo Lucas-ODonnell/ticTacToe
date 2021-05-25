@@ -3,20 +3,24 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Tic Tac Toe</title>
-		<link rel="stylesheet" href="./stylesheets/main.css"
+		<link rel="stylesheet" href="./stylesheets/main.css">
+		<script defer src="script.js"></script>
 	</head>
-		<body>
-			<h1>Tic Tac Toe</h1>
-			<div class="this-board">
-				<button data-square="zero" id="zero">X</button>
-				<button data-square="one" id="one"></button>
-				<button data-square="two" id="two">O</button>
-				<button data-square="three" id="three"></button>
-				<button data-square="four" id="four"></button>
-				<button data-square="five" id="five"></button>
-				<button data-square="six" id="six"></button>
-				<button data-square="seven" id="seven"></button>
-				<button data-square="eight" id="eight"></button>
-			</div>
-		</body>
+	<body>
+		<h1>Tic Tac Toe</h1>
+		<div class="wrap-btn" data-reset-board>
+			<button class="reset-button">Reset</button>
+		</div>
+		<div data-all-board class="this-board">
+			<button data-square-target="#zero" id="zero"></button>
+			<button data-square-target="#one" id="one"></button>
+			<button data-square-target="#two" id="two"></button>
+			<button data-square-target="#three" id="three"></button>
+			<button data-square-target="#four" id="four"></button>
+			<button data-square-target="#five" id="five"></button>
+			<button data-square-target="#six" id="six"></button>
+			<button data-square-target="#seven" id="seven"></button>
+			<button data-square-target="#eight" id="eight"></button>
+		</div>
+	</body>
 </html>

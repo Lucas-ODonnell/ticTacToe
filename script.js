@@ -4,37 +4,33 @@ class Player {
 	}
 };
 
-let player1 = new Player("X");
-let player2 = new Player("O");
+const player1 = new Player("X");
+const player2 = new Player("O");
+
+let currentPlayer = player1;
+let board = ["","","","","","", "","",""];
+
 
 const Game = (() => {
 	const placePiece = (position) => {
 		if (board[position] !== "") {
-			console.log("That is an invalid position");
+			return;
 		} else {
 			board[position] = currentPlayer.piece;
 			gameOver(currentPlayer);
+			changePlayer();
 		}
-		changePlayer();
 	};
 
 	const gameOver = (currentPlayer) => {
 		if (winner(currentPlayer) == true) {
-			console.log(`${currentPlayer.piece} wins!`);
-			clear();
+			window.alert(`${currentPlayer.piece} wins!`);
 		} else if (draw() == true) {
-			console.log("It's a draw");
-			clear();
-		} else {
-			console.log("Game isn't over")
-			return;
-		}
+			window.alert("It's a draw!");
+		}	
 	};
 	
 
-	// Private ***********************************************************************88
-	let board = ["","","","","","", "","",""];
-	let currentPlayer = player1;
 	const changePlayer = () => {
 		if (currentPlayer == player1) {
 			currentPlayer = player2;
@@ -79,8 +75,38 @@ const Game = (() => {
 		placePiece,
 		gameOver,
 		clear,
-		board,
-		currentPlayer,
+		changePlayer,
 	}
 
 })();
+
+const allPositions = document.querySelectorAll('[data-square-target]');
+const resetButton = document.querySelector('[data-reset-board]');
+const allBoard = document.querySelector('[data-all-board]');
+const numberConverter = {"#zero": 0, "#one": 1, "#two": 2, "#three": 3, "#four": 4, "#five": 5, "#six": 6, "#seven": 7, "#eight": 8};
+
+const randomVariable = allPositions.forEach(position => {
+	position.addEventListener("click", () => {
+		let thisPosition = document.querySelector(position.dataset.squareTarget);
+		animateBoard(thisPosition);
+	});
+
+});
+
+function animateBoard(thisPosition){
+	if (thisPosition.innerText !== "X" && thisPosition.innerText !== "O"){
+		thisPosition.innerText = currentPlayer.piece;
+	}
+	Game.placePiece(numberConverter[thisPosition.dataset.squareTarget]);
+}
+
+//Reset the board*******************************************************************************************************************************************
+resetButton.addEventListener('click', () => {
+	Game.clear();
+	resetAnimatedBoard();
+});
+
+function resetAnimatedBoard() {
+	location.reload();
+}
+

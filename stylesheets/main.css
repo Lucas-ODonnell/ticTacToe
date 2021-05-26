@@ -218,3 +218,14 @@ input {
 	border-right: 5px solid black;
 
 }
+
+.footer {
+	display: flex;
+	justify-content: center;
+	padding: 1rem 0.5rem 0.5rem;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	position: fixed;
+	z-index: 1030;
+}

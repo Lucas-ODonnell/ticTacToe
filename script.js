@@ -1,16 +1,12 @@
-class Player {
-	constructor(piece) {
-		this.piece = piece
-	}
-};
+//factory function to create player
+const createPlayer = (name, piece) => {
+	return {
+		name: name,
+		piece: piece
+	};
+}
 
-const player1 = new Player("X");
-const player2 = new Player("O");
-
-let currentPlayer = player1;
-let board = ["","","","","","", "","",""];
-
-
+//game logic
 const Game = (() => {
 	const placePiece = (position) => {
 		if (board[position] !== "") {
@@ -24,7 +20,7 @@ const Game = (() => {
 
 	const gameOver = (currentPlayer) => {
 		if (winner(currentPlayer) == true) {
-			window.alert(`${currentPlayer.piece} wins!`);
+			window.alert(`${currentPlayer.name}(${currentPlayer.piece}) wins!`);
 		} else if (draw() == true) {
 			window.alert("It's a draw!");
 		}	
@@ -80,29 +76,46 @@ const Game = (() => {
 
 })();
 
-const Animate = (() => {
-
+//animate the browser 
+const Animate= (() => {
 	const allPositions = document.querySelectorAll('[data-square-target]');
 	const resetButton = document.querySelector('[data-reset-board]');
 	const allBoard = document.querySelector('[data-all-board]');
+	const playerButtons = document.querySelectorAll('[data-player-target]');
 	const numberConverter = {"#zero": 0, "#one": 1, "#two": 2, "#three": 3, "#four": 4, "#five": 5, "#six": 6, "#seven": 7, "#eight": 8};
 
-	const randomVariable = allPositions.forEach(position => {
+	const allBoardPositions = allPositions.forEach(position => {
 		position.addEventListener("click", () => {
 			let thisPosition = document.querySelector(position.dataset.squareTarget);
 			animateBoard(thisPosition);
 		});
-
 	});
 
+	/* Prevent User from changing name and piece during a game */
+
+	const preventChange = allPositions.forEach(position => {
+		position.addEventListener('click', () => {
+			let thisPosition = document.querySelector(position.dataset.squareTarget);
+			if (thisPosition != "") {
+				preventMultiple();
+			}
+		})
+	});
+
+	function preventMultiple() {
+		playerButtons.forEach(button => {
+			button.setAttribute("disabled", true);
+		})
+	}
+
+
 	function animateBoard(thisPosition){
-		if (thisPosition.innerText !== "X" && thisPosition.innerText !== "O"){
+		if (thisPosition.innerText == ""){
 			thisPosition.innerText = currentPlayer.piece;
 		}
 		Game.placePiece(numberConverter[thisPosition.dataset.squareTarget]);
 	}
 
-	//Reset the board*******************************************************************************************************************************************
 	resetButton.addEventListener('click', () => {
 		Game.clear();
 		resetAnimatedBoard();
@@ -112,3 +125,69 @@ const Animate = (() => {
 		location.reload();
 	}
 })();
+
+//Let player choose name and piece
+const ChangePlayer = (() => {
+	const overlay = document.getElementById('overlay');
+	const playerButtons = document.querySelectorAll('[data-player-target]');
+	const closeModalButton = document.querySelector('[data-close-button]')
+	const formForSubmit = document.querySelector('[data-edit-player-form]')
+	let currentIndex;
+
+	playerButtons.forEach((button, index) => {
+		button.addEventListener('click', () => {
+			currentIndex = index;
+			const modal = document.querySelector(button.dataset.playerTarget);
+			openModal(modal);
+		});
+	});
+
+	closeModalButton.addEventListener('click', () => {
+		const modal = closeModalButton.closest(".modal");
+		closeModal(modal);
+	});
+
+	function openModal(modal) {
+		if (modal == null) return;
+		modal.classList.add('active');
+		overlay.classList.add('active');
+	}
+
+	function closeModal(modal) {
+		if (modal == null) return;
+		modal.classList.remove('active');
+		overlay.classList.remove('active');
+	}
+
+	//Submit **********************************************
+	formForSubmit.addEventListener('submit', editPlayer);
+
+	function editPlayer(e) {
+		e.preventDefault();
+		player = createPlayer(
+			document.querySelector('[name=name]').value,
+			document.querySelector('[name=piece]').value
+		);
+		setPlayer(player, currentIndex);
+		closeModal(modal);
+		this.reset();
+	}
+
+	function setPlayer(player, currentIndex) {
+		if (currentIndex == 0) {
+			player1 = player;
+			currentPlayer = player1;
+		} else if (currentIndex == 1) {
+			player2 = player;
+		} else {
+			return;
+		}
+	}
+})();
+
+let player1 = createPlayer("John Doe","X");
+let player2 = createPlayer("Jane Doe","O");
+
+let currentPlayer = player1;
+let board = ["","","","","","", "","",""];
+

@@ -1,7 +1,7 @@
 /* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+v2.0 | 20110126
+License: none (public domain)
+ */
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -47,15 +47,33 @@ table {
 	border-spacing: 0;
 }
 
+
 *,*::before, *::after {
 	box-sizing: border-box;
+}
+
+
+body {
+	background:linear-gradient(90deg, Red, Orange, Yellow, Green, Blue, Indigo,violet);
 }
 
 h1 {
 	font-size: 3rem;
 	text-align: center;
 	margin-top: 16px;
+	font-weight: bold;
 }
+
+.rainbow-text {
+	font-size: 50px;
+	color: #e8b923;
+	text-shadow: -1px 1px 0 #000,
+	1px 1px 0 #000,
+	1px -1px 0 #000,
+	-1px -1px 0 #000;
+}
+
+
 .this-board {
 	display: grid;
 	grid-template-columns: repeat(3, 200px);
@@ -73,14 +91,34 @@ button {
 	justify-content: center;
 	align-items: center;
 	color: black;
+	outline:0;
+	border:0;
+	background: none;
 }
 
-button:hover {
-	background-color: rgba(211,211,211,.75);
+.small-button:hover {
+	background: linear-gradient(304deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
 }
 
-button.reset-button {
+.small-button {
 	font-size: 1rem;
+	color: black;
+	font-weight: bold;
+	border: 1px solid black;
+	border-radius: 20px;
+	padding: 7.5px 10px 7.5px 10px; 
+	background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+}
+
+}
+
+.btn-border {
+	border: 1px solid black;
+}
+
+input {
+	margin-top: 16px;
+	margin-bottom: 8px;
 }
 
 .wrap-btn {
@@ -89,6 +127,94 @@ button.reset-button {
 	margin-top: 16px;
 }
 
+.players {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 8px;
+}
 
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -80%) scale(0);
+	width: 500px;
+	max-width: 80%;
+	z-index: 10;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 10px;
+	transition: 200ms ease-in-out;
+}
 
+.modal.active {
+	transform: translate(-50%, -80%) scale(1);
+}
 
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modal-header #exit-button {
+	border: none;
+	background: none;
+	outline: none;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
+.submit-btn {
+	display: flex;
+	justify-content: center;
+}
+
+.edit-player {
+	display: flex;
+	flex-direction: column;
+	padding-left: 16px;
+	padding-bottom: 8px;
+	border: 1px solid black;
+}
+
+#overlay {
+	position: fixed;
+	opacity: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,.5);
+	pointer-events: none;
+	transition: 200ms ease-in-out;
+}
+
+#overlay.active {
+	pointer-events: all;
+	opacity: 1;
+}
+
+#zero, #one ,#two {
+	border-bottom: 5px solid black;
+}
+
+#six, #seven, #eight {
+	border-top: 5px solid black;
+}
+
+#four {
+	border-left: 5px solid black;
+	border-right: 5px solid black;
+}
+
+#one {
+	border-left: 5px solid black;
+	border-right: 5px solid black;
+}
+
+#seven {
+	border-left: 5px solid black;
+	border-right: 5px solid black;
+
+}

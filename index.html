@@ -7,9 +7,13 @@
 		<script defer src="script.js"></script>
 	</head>
 	<body>
-		<h1>Tic Tac Toe</h1>
+		<h1 class="rainbow-text">Rainbow Tic Tac Toe</h1>
 		<div class="wrap-btn" data-reset-board>
-			<button class="reset-button">Reset</button>
+			<button class="small-button">Reset</button>
+		</div>
+		<div class="players">
+			<button data-player-target="#modal" class="small-button" id="player1">Edit Player1</button>
+			<button data-player-target="#modal" class="small-button" id="player2">Edit Player2</button>
 		</div>
 		<div data-all-board class="this-board">
 			<button data-square-target="#zero" id="zero"></button>
@@ -22,5 +26,28 @@
 			<button data-square-target="#seven" id="seven"></button>
 			<button data-square-target="#eight" id="eight"></button>
 		</div>
+
+		<div data-modal class="modal" id="modal">
+			<form data-edit-player-form class="edit-player">
+				<div class="modal-header">
+					<h2>Change Info</h2>
+					<button data-close-button type='button' class="small-button" id="exit-button">&times;</button>
+				</div>
+				<div>
+					<label for="name">Name: </label>
+					<input type="text" name="name" id="name" required>
+				</div>
+
+				<div>
+					<label for="piece">Piece: </label>
+					<input type="text"  maxlength="1" name="piece" id="piece" required>
+				</div>
+				<div class="submit-btn">
+					<button data-submit-form type="submit" class="small-button btn-border">Submit</button>
+				</div>
+			</form>
+		</div>
+		<div id="overlay"></div>
+
 	</body>
 </html>

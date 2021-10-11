@@ -52,20 +52,38 @@ table {
 	box-sizing: border-box;
 }
 
+@media screen and (max-width: 2000px ) {
+	html {
+		 font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	html {
+		font-size: 13px;
+	}
+}
+
+@media screen and (max-width: 850px) {
+	html {
+		font-size: 10px;
+	}
+}
 
 body {
 	background:linear-gradient(90deg, Red, Orange, Yellow, Green, Blue, Indigo,violet);
 }
 
-h1 {
-	font-size: 3rem;
-	text-align: center;
-	margin-top: 16px;
-	font-weight: bold;
+.header {
+	display: flex;
+	justify-content: center;
+	margin: 2em 0;
 }
 
-.rainbow-text {
-	font-size: 50px;
+.header-container h1 {
+	font-size: 3rem;
+	margin-top: 16px;
+	font-weight: bold;
 	color: #e8b923;
 	text-shadow: -1px 1px 0 #000,
 	1px 1px 0 #000,
@@ -73,16 +91,15 @@ h1 {
 	-1px -1px 0 #000;
 }
 
+.board {
+	display: flex;
+	justify-content: center;
+}
 
 .this-board {
 	display: grid;
-	grid-template-columns: repeat(3, 200px);
-	grid-template-rows: repeat(3, 200px);
-	justify-content: center;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	grid-template-columns: repeat(3, 12.5rem);
+	grid-template-rows: repeat(3, 12.5rem);
 }
 
 button {
@@ -117,14 +134,14 @@ button {
 }
 
 input {
-	margin-top: 16px;
-	margin-bottom: 8px;
+	margin-top: 1em;
+	margin-bottom: .5em;
 }
 
 .wrap-btn {
 	display: flex;
 	justify-content: center;
-	margin-top: 16px;
+	margin-top: 1em;
 }
 
 .players {
@@ -138,8 +155,8 @@ input {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -80%) scale(0);
-	width: 500px;
-	max-width: 80%;
+	width: 100%;
+	max-width: 31.25rem;
 	z-index: 10;
 	background-color: white;
 	border: 1px solid black;
@@ -173,8 +190,8 @@ input {
 .edit-player {
 	display: flex;
 	flex-direction: column;
-	padding-left: 16px;
-	padding-bottom: 8px;
+	padding-left: 1em;
+	padding-bottom: .5em;
 	border: 1px solid black;
 }
 
@@ -223,7 +240,7 @@ input {
 	display: flex;
 	justify-content: center;
 	padding: 1rem 0.5rem 0.5rem;
-	bottom: 20px;
+	bottom: 1rem;
 	left: 0;
 	right: 0;
 	position: fixed;

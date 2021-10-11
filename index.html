@@ -3,29 +3,40 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Tic Tac Toe</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="./stylesheets/main.css">
 		<script defer src="script.js"></script>
 	</head>
 	<body>
-		<h1 class="rainbow-text">Rainbow Tic Tac Toe</h1>
-		<div class="wrap-btn" data-reset-board>
-			<button class="small-button">Reset</button>
-		</div>
-		<div class="players">
-			<button data-player-target="#modal" class="small-button" id="player1">Edit Player1</button>
-			<button data-player-target="#modal" class="small-button" id="player2">Edit Player2</button>
-		</div>
-		<div data-all-board class="this-board">
-			<button data-square-target="#zero" id="zero"></button>
-			<button data-square-target="#one" id="one"></button>
-			<button data-square-target="#two" id="two"></button>
-			<button data-square-target="#three" id="three"></button>
-			<button data-square-target="#four" id="four"></button>
-			<button data-square-target="#five" id="five"></button>
-			<button data-square-target="#six" id="six"></button>
-			<button data-square-target="#seven" id="seven"></button>
-			<button data-square-target="#eight" id="eight"></button>
-		</div>
+		<section>
+			<div class="header">
+				<div class="header-container">
+					<h1>Rainbow Tic Tac Toe</h1>
+					<div class="wrap-btn" data-reset-board>
+						<button class="small-button">Reset</button>
+					</div>
+					<div class="players">
+						<button data-player-target="#modal" class="small-button" id="player1">Edit Player1</button>
+						<button data-player-target="#modal" class="small-button" id="player2">Edit Player2</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="board">
+				<div data-all-board class="this-board">
+					<button data-square-target="#zero" id="zero"></button>
+					<button data-square-target="#one" id="one"></button>
+					<button data-square-target="#two" id="two"></button>
+					<button data-square-target="#three" id="three"></button>
+					<button data-square-target="#four" id="four"></button>
+					<button data-square-target="#five" id="five"></button>
+					<button data-square-target="#six" id="six"></button>
+					<button data-square-target="#seven" id="seven"></button>
+					<button data-square-target="#eight" id="eight"></button>
+				</div>
+			</div>
+		</section>
 
 		<div data-modal class="modal" id="modal">
 			<form data-edit-player-form class="edit-player">
@@ -50,8 +61,8 @@
 		<div id="overlay"></div>
 	</body>
 	<footer class="footer">
-			<p>
+		<p>
 			Created by <a href="https://github.com/Lucas-ODonnell">Lucas O'Donnell</a> &copy
-			</p>
+		</p>
 	</footer>
 </html>
